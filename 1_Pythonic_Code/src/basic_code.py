@@ -104,7 +104,7 @@ def list_comprehensions():
 def enumerate_zip():
     """ Enumerate """
     # list 의 element 를 추출할 때 번호를 붙여서 추출. >> 이 때 반환값은 tuple 의 형태임 !!!
-    print("\n===============[ Enumerate ]===============")
+    print("\n===============[ Enumerate ]===============\n")
 
     # list 에 있는 index 와 값을 unpacking
     for i, j in enumerate(["tic", "tac", "toe"]):
@@ -123,7 +123,7 @@ def enumerate_zip():
 
     """ Zip """
     # 두 개의 list 의 값을 병렬적으로 추출함
-    print("\n===============[ Zip ]===============")
+    print("\n===============[ Zip ]===============\n")
 
     # 병렬적으로 값을 추출
     alist = ["a1", "a2", "a3"]
@@ -142,7 +142,7 @@ def enumerate_zip():
 
     """ Enumerate & Zip """
     # Enumerate 와 Zip 을 동시에 써서, 순서쌍을 나타낼 수 있음
-    print("\n===============[ Enumerate & Zip ]===============")
+    print("\n===============[ Enumerate & Zip ]===============\n")
     alist = ["a1", "a2", "a3"]
     blist = ["b1", "b2", "b3"]
     for i, (a, b) in enumerate(zip(alist, blist)):
@@ -152,7 +152,7 @@ def enumerate_zip():
 def lambda_map_reduce():
     """ Lambda """
     # 함수 이름 없이, 함수처럼 쓸수 있는 익명함수
-    print("\n===============[ Lambda ]===============")
+    print("\n===============[ Lambda ]===============\n")
     f = lambda x, y: x + y
     print(f(1, 4))
     f = lambda x: x ** 2
@@ -165,7 +165,7 @@ def lambda_map_reduce():
     # Sequence 자료형의 각 element 에 동일한 function 을 적용함
     # 또한, Python3 에선 반드시 list 나 tuple 같은 sequence 자료형으로 반환을 해줘야 사용 가능하다.
     # (하지만 iterator 로 하나하나씩 호출 가능하다.)
-    print("\n===============[ Map ]===============")
+    print("\n===============[ Map ]===============\n")
 
     ex = [1, 2, 3, 4, 5]
     print(ex)
@@ -190,7 +190,7 @@ def lambda_map_reduce():
     """ Reduce """
     # map 과 달리 sequence 자료형에 똑같은 함수를 적용해서 앞의 element 부터 누적하여 계산
         # from functools import reduce 를 해야 함
-    print("\n===============[ Reduce ]===============")
+    print("\n===============[ Reduce ]===============\n")
 
     print(reduce(lambda x, y: x + y, [1, 2, 3, 4, 5]))
 

@@ -1,4 +1,5 @@
 from src import basic_code as bc
+from src import collections as c
 
 """
  Created by IntelliJ IDEA.
@@ -14,6 +15,12 @@ from src import basic_code as bc
 < Pythonic Code >
 - Python 개발자들과 커뮤니케이션 가능
 - 효율
+
+"""
+
+"""
+
+[ basic_code.py ]
 
 < 1. Split & Join >
 - pass
@@ -54,13 +61,47 @@ from src import basic_code as bc
 
 """
 
+"""
+
+[ collections.py ]
+
+< 1. Deque >
+- stack 과 queue 를 지원하는 모듈
+- list 에 비해 효율적인 자료 저장 방식을 지원함
+- rotate, reverse 등 Linked List 의 특성을 지원함
+- 기존 list 형태의 함수를 모두 지원함
+- deque 는 기존 list 보다 효율적인 자료구조를 제공
+- 효율적 메모리 구조로 처리 속도 향상
+
+< 2. OrderedDict >
+- dict 와 달리, OrderedDict 는 데이터를 입력한 순서대로의 dict 를 반환함
+- OrderedDict 는 dict 오브젝트를 인자로 받을 수 있음
+
+< 3. DefaultDict >
+- dict type 의 값에 기본값을 지정, 신규값에 default 값을 넣고자 할 때 사용
+
+< 4. Counter >
+- sequence type 의 data element 들의 값과 갯수를 dict 형태로 변환
+- dict type, keyword parameter 등도 모두 처리 가능
+
+< 5. Namedtuple >
+- tuple 의 형태로 data 구조체를 저장하는 방법
+- 저장되는 data 의 변수를 사전에 지정해서 저장함
+- C 에서 구조체와 개념이 유사
+
+"""
+
 
 def main():
+    print("\n#############################[ 1. basic code.py ]#############################")
     bc.split_join()
     bc.list_comprehensions()
     bc.enumerate_zip()
     bc.lambda_map_reduce()
     bc.asterisk()
+
+    print("\n#############################[ 2. collections.py ]#############################")
+    c.collections()
 
 
 if __name__ == "__main__":
