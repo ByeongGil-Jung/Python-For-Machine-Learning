@@ -10,6 +10,25 @@ from src import linear_algebra_practice as lap
  Time: 오전 2:25
 """
 
+"""
+
+[ linear_algebra.py ]
+
+< 1. Vector >
+- Vector 를 Python 으로 표시하는 다양한 방법 존재
+- 최선의 방법은 없음
+- 값의 변경 유무, 속성값 유무에 따라 선택할 수 있음
+- 예제에선 기본적으로 vector 를 list 로 연산할 것임
+- zip 을 사용하여 vector 를 간단하게 계산할 수 있다.
+
+< 2. Matrix >
+- Matrix 역시 Python 으로 표시하는 다양한 방법 존재
+- 특히 dict 로 표현할 때는 무궁무진한 방법 존재
+- 예제에선 기본적으로 2-Dimensional-List 형태로 표현함
+- [[1번째 row], [2번째 row], [3번째 row]]
+
+"""
+
 
 def main():
     print("\n#############################[ 1. linear_algebra.py ]#############################")
