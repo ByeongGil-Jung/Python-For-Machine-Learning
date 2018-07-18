@@ -172,6 +172,112 @@ print(m[arr])
 
 """
 
+"""
+
+< Pandas >
+- 구조화된 데이터의 처리를 지원하는 Python 라이브러리 (Python 계의 엑셀)
+- Numpy 와 통합하여, 강력한 "스프레드시트" 처리 기능을 제공
+- 인덱싱, 연산용 함수, 전처리 함수 등을 제공함
+- numpy 의 wrapper 이다.
+
+"""
+
+"""
+
+[ pandas_lec_1.ipynb ]
+
+== (1) :: Series ==
+
+- Column Vector 를 표현하는 object
+- numpy.ndarray 의 서브 클래스이다.
+- index 타입을 핸들링 할 수 있다.
+- example_obj = pd.Series(data)
+- data 에는 list, dict 값 모두 들어갈 수 있다.
+(만약 dict 를 넣을 땐, 앞에는 index 값, 뒤에는 value 값이 삽입된다.)
+
+
+== (2) :: Dataframe ==
+
+- Data table 전체를 포함하는 Object
+- numpy 의 서브클래스이기 때문에 numpy 의 함수들을 사용 할 수 있다.
+- numpy 의 array 와 유사하다.
+- 각각의 col 은 서로 다른 type 을 가진다.
+- Matrix 로 가정을 하며, 따라서 당연히 row 와 col 의 값이 존재하고 접근할 수 있다.
+- Size mutable 로 변경 가능하다. (insert 및 delete 로 size 가 유동적으로 변한다.)
+
+- loc 을 통해 해당 위치의 데이터를 추출할 수 있고, (index 의 위치를 실제 value 값을 기준으로 절대적으로 잡는다.)
+- iloc 을 통해 해당 index 의 데이터를 추출할 수 있다. (index 의 위치를 '처음' 을 기준으로 상대적으로 잡는다.)
+
+
+== (3) :: Selection & Drop ==
+
+- Selection : data 를 가져옴
+- Drop  : data 를 없앰
+(pandas 는 쉽게 data 를 못 지운다. 반드시 drop(~, inplace=True) 를 붙여줘야 한다 !)
+
+>> Selection
+- head(n) 으로 n 개의 데이터를 추출할 수 있다.
+- 하나의 col 을 추출할 경우는 series 객체를 추출하게 된다.
+- 여러개의 col 을 추출할 경우는 data frame 객체를 추출하게 된다.
+
+>> Drop
+- index 번호로 drop 가능
+- drop 이 반영되게 하려면 drop(inplace=True) 옵션을 붙일 것 !
+- 한 개 이상의 data 를 drop 하고 싶을 땐 list 로 묶는다.
+- 원하는 col 을 지울 수 있다. (반드시 axis 를 넣어줘야 하며, 2차원일 경우 axis=1 이다.)
+
+
+== (4) :: Dataframe Operations ==
+- Operation type : add, sub, div, mul
+
+>> Series Operation
+- index 기준으로 연산 수행
+- 겹치는 index 가 없을 경우 NaN 값으로 반환
+
+>> Dataframe Operation
+- col 과 index 를 모두 고려하여 연산 수행
+- fill_value=k 의 인자를 넣어줌으로써 NaN 일 경우의 값 설정 가능
+
+- sereis + dataframe 일 경우 col 을 기준으로 broadcasting 이 발생함
+- axis 를 인자로 넣으면, axis 를 기준으로 broadcasting 이 발생한다.
+
+
+== (5) :: Lambda, Map, Apply ==
+- pandas 에서 굉장히 실용적임
+
+>> Map for series
+- pandas 의 series 타입의 data 에도 map 함수 사용 가능
+- function 대신 dict, sequence 자료형 등으로 대체 가능
+- dict 타입을 이용하여 map 을 사용하면, 해당 index 의 값을 바꿔준다. (유용하게 데이터 변환 가능)
+- size 가 같다면, 같은 위치의 값들끼리 연산한다.
+
+
+>> Apply for dataframe
+- map 과 달리, series 전체 col 에 해당 함수를 적용시킨다.
+- series data 로 입력받아 handling 가능하다.
+- 내장 연산 함수를 사용할 때도 똑같은 효과를 거둘 수 있다.
+- mean, std 등 사용 가능하다.
+- scalar 값 이외에 series 값도 반환 가능하다.
+
+>> Applymap for dataframe
+- series 단위가 아닌, 전체 element 단위로 함수를 적용시킨다.
+(기본 map 은 series 데이터의 element 하나하나에 적용한다.)
+- series 단위에 apply 를 적용시킬 때와 같은 효과
+
+
+== (6) :: Pandas Built-in Functions ==
+- describe : numeric type 데이터의 요약 정보를 보여줌.
+- unique : series data 의 유일한 값을 list 로 반환함.
+(category 형 데이터가 몇 개 인지 모를 경우 유용하다.)
+- sum : 기본적인 col 또는 row 값의 합 연산.
+(axis 를 기준으로 값을 추출할 수 있다.)
+- isnull : col 또는 row 값의 NaN (null) 값의 index 를 반환한다.
+- sort_values : col 값을 기준으로 data 를 sorting.
+(ascending 인자를 통해 오름차순, 내림차순 구분 가능하다.)
+- corr, cov, corrwith : 상관계수와 공분산을 구하는 함수.
+
+"""
+
 
 def main():
     print("\n#############################[ 1. numpy_lec.py ]#############################")
