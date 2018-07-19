@@ -278,6 +278,144 @@ print(m[arr])
 
 """
 
+"""
+
+[ pandas_lec_2.ipynb ]
+
+== (1) :: Groupby 1 ==
+
+>> groupby
+- SQL GROUPBY 명령어와 같다.
+- split -> apply -> combine 과정을 거쳐 연산한다.
+
+ df.groupby("기준이 되는 col")["적용 받는 col"].적용받는연산()
+
+>> hierarchical index
+- groupby 의 결과물도 결국은 dataframe
+- 위와 같이 두 개의 col 로 groupby 를 할 경우, index 가 두 개 생긴다.
+
+>> unstack()
+- Group 으로 묶여진 데이터를 matrix 형태로 만들어 줌.
+- 데이터 전처리 작업에서 중요하다.
+
+>> swaplevel()
+- index level 을 변경할 수 있음
+- index level 이 바뀐 상황에서 sorting 역시 가능하다.
+
+>> operations
+- index level 을 기준으로 기본 연산 수행 가능
+
+ h_index.sum(level=0)  # level 0 을 기준으로 sum
+
+
+== (2) :: Groupby 2 ==
+
+>> grouped
+- groupby 에 의해 split 된 상태를 그대로 추출 가능함
+
+- 추출된 group 정보에는 세가지 유형의 apply 가 가능함
+- Aggregation : 요약된 통계 정보를 추출해 줌
+- Transformation : 해당 정보를 변환해 줌
+- Filtration : 특정 정보를 제거하여 보여주는 필터링 기능
+
+>> Aggregation
+:: 요약된 통계 정보를 추출해 줌
+
+ grouped.agg(np.sum)
+ grouped.agg(np.mean)
+
+- 특정 col 에 여러개의 function 을 apply 할 수 있다.
+
+ grouped["Points"].agg([np.sum, np.mean, np.std])
+
+>> Transformation
+- group 별로 series 끼리 값을 handling 할 때 사용
+- aggregation 과 달리 key 값 별로 요약된 정보가 아님.
+- 개별 데이터의 변환을 지원함
+- 각각의 col 을 series 로 본다.
+- 단, max 나 min 처럼 series 에 적용되는 데이터들은, key 값을 기준으로 grouped 된 데이터 기준이다.
+
+ score = lambda x: x.max()
+ grouped.transform(score)
+
+>> Filtration (filter)
+- 특정 조건으로 데이터를 검색할 때 사용
+- filter 안에는 boolean 조건이 들어가야 함.
+
+ df.groupby("Team").filter(lambda x: len(x) >= 3)
+ (len(x) 는 grouped 된 dataframe 의 갯수)
+
+
+== (3) :: Pivot Table & Crosstab ==
+
+>> pivot_table
+- 가로축과 세로축을 원하는 대로 뽑아서 연산을 수행할 수 있다.
+- unstack() 과 동일하게 많이 사용한다.
+
+ df.pivot_table(["duration"], index=[df["month"], df["item"]], columns=df["network"], aggfunc="sum", fill_value=0)
+
+>> crosstab
+- 특히 두 col 의 교차 빈도, 비율, 덧셈 등을 구할 때 사용
+- Pivot Table 의 특수한 형태
+- User-Item Rating Matrix 등을 만들 때 사용가능 함. (RDB 에서 한 번에 바꿔줄 때 편리함)
+
+ pd.crosstab(index=df["network_type"], columns=df["network"], values=df["duration"], aggfunc="first").fillna(0)
+
+
+== (4) :: Merge & Concat ==
+
+>> merge
+- SQL 에서 많이 사용하는 Merge 와 같은 기능
+- 두 개의 key 값을 지정하고, 하나로 합칠 때 사용
+(두 개의 데이터를 하나로 합침)
+
+ pd.merge(df_a, df_b, on="col 의 이름")
+
+>> left join
+ pd.merge(df_a, df_b, on="subject_id", how="left")
+
+>> right join
+ pd.merge(df_a, df_b, on="subject_id", how="right")
+
+>> full join (outer join)
+ pd.merge(df_a, df_b, on="subject_id", how="outer")
+
+>> inner join
+ pd.merge(df_a, df_b, on="subject_id", how="inner")
+
+>> index based join
+- 양 쪽의 index 를 보존하면서, join 을 하고자 할 때 사용.
+(index 를 기준으로 join 한다.)
+ 
+ pd.merge(df_a, df_b, left_index=True, right_index=True)
+
+>> concat
+- numpy 와 동일하다.
+
+
+== (5) :: DB Persistence ==
+
+>> Database Connection
+- data loading 시 db connection 기능을 제공함
+
+(sqlite3 를 예로 들어서)
+
+ conn = sqlite3.connect("db url")
+ df_airplines = pd.read_sql_query("SQL 문", conn)
+
+>> Pickle Connection
+- 가장 일반적인 Python 파일 persistence
+- to_pickle, read_pickle 함수 이용
+- 간단한 데이터 저장은 pickle 을 많이 이용한다.
+
+ (write)
+ df.to_pickle("./df.pickle")
+ 
+ (read)
+ df_pickle = df.read_pickle("./df.pickle")
+
+"""
+
 
 def main():
     print("\n#############################[ 1. numpy_lec.py ]#############################")
