@@ -416,6 +416,73 @@ print(m[arr])
 
 """
 
+"""
+
+< Matplotlib >
+- Python 의 대표적인 데이터 시각화 라이브러리
+- 다양한 Graph 를 제공하며, Pandas 와 연동 가능
+
+"""
+
+"""
+
+[ matplotlib_lec.ipynb ]
+
+== (1) :: Matplotlib ==
+- pyplot 객체를 사용하여 데이터를 시각화
+- pyplot 객체에 그래프들을 쌓은 다음 show() 로 flush
+
+- graph 는 figure 객체에 생성됨. (pyplot -> figure)
+- pyplot 객체 사용시, 기본 figure 에 그래프가 그려짐
+- (즉, figure 가 그림을 출력하는 일종의 인스턴스)
+
+- plt.show() 를 한 순간, figure 를 출력하고, 현재까지의 figure 를 초기화 시킨다.
+- (즉, plt.show() 를 한 순간까지의 그래프를 출력한다.)
+
+<< 단점 >>
+- arg 를 kwargs 로 받는다.
+- 즉, 고정된 arg 가 없어서 alt+tab 으로 확인이 어렵다.
+
+- 여러 그래프를 입력 받을 경우, 중첩되어 출력된다.
+
+
+== (2) :: Matplotlib Graph ==
+>> Scatter
+- 산포도를 그릴 수 있음
+- scatter 함수 사용
+- maker : 데이터의 scatter 모양 지정
+(s 인자로 데이터의 크기를 지정, 데이터의 크기 비교 가능)
+
+>> Bar Chart
+- 막대 그래프를 그릴 수 있음
+- bar 함수 사용
+
+>> Histogram
+- 히스토그램을 그릴 수 있음
+- hist 함수 사용
+- bins : 데이터를 나누는 갯수이다.
+
+>> Boxplot
+- 박스플롯을 그릴 수 있음
+- boxplot 함수 사용
+- 50% 구간을 네모로 표시하며, 내부의 선은 Median(중간값) 이다.
+- range 를 벗어난 값들은 점으로 표시한다.
+
+
+== (3) :: Matplotlib With Pandas ==
+- pandas 0.7 버전 이상부터 matplotlib 를 사용한 그래프 지원
+- Dataframe, Series 별로 그래프 작성 가능
+
+>> Scatter Matrix
+- pd.scatter_matrix() 를 통해 각 data 들 끼리의 연관 graph 를 볼 수 있다.
+- 대각선의 값은 데이터가 어떤 식으로의 분포를 가졌는지를 보여준다.
+
+>> Matshow
+- ax.matshow() 를 통해 각 data 들 끼리의 상관관계 여부를 색의 농도로 볼 수 있다.
+- 1 에 가까울 수록 상관관계가 있고, -1 에 가까울 수록 상관관계가 없다. (설정 가능)
+
+"""
+
 
 def main():
     print("\n#############################[ 1. numpy_lec.py ]#############################")
