@@ -483,6 +483,76 @@ print(m[arr])
 
 """
 
+"""
+
+< Data Cleaning >
+
+>> 데이터 처리에 대한 이슈
+
+- 데이터의 최대 / 최소가 다름 -> Scale 에 따른 y 값의 영향
+- Ordinary 혹은 Nominal 한 값들의 표현은 어떻게 ?
+- 잘 못 기입된 값들에 대한 처리
+- 값이 없을 경우에는 어떻게 ?
+- 극단적으로 큰 값 또는 작은 값들은 그대로 놔 둬야 하는가?
+
+>> 데이터 전처리에 대한 이슈
+
+- 데이터가 빠진 경우 (결측치의 처리)
+- 라벨링된 데이터(category) 데이터의 처리
+- 데이터의 scale 의 차이가 매우 크게 날 경우
+
+"""
+
+"""
+
+[ data_cleaning.ipynb ]
+
+
+== (1) :: Missing Values ==
+
+- 데이터가 없으면, sample 을 drop (좋지 않은 방법 -> 한 두개만 빌 경우 사용)
+- 데이터가 없는 '최소 개수' 를 정해서 'sample 을 drop'
+- 데이터가 거의 없는 feature 는 'feature 자체를 drop'
+- 최빈값, 평균값, 중간값 등으로 비어있는 데이터를 채우기
+
+
+== (2) :: Category Data ==
+- 대부분 One-Hot Encoding 을 이용
+
+- 이산형 데이터(binary data) 는 어떻게 처리해야 하는가 ? -> One-Hot Encoding
+(One-Hot Encoding : category 변수로 되어 있는 data 를 1 과 0 으로 이루어진 이진수로 반환)
+(vector 의 크기를 분산시켜 numerical 하게 표현한다.)
+
+ex)
+{Green, Blue, Yellow} -> 데이터의 집합
+
+{Green} -> {1, 0, 0}
+{Blue} -> {0, 1, 0}
+{Yellow} -> {0, 0, 1}
+과 같이 실제 데이터 set 의 크기만큼 Binary Feature 를 생성
+
+- pd.get_dummies(df) 를 사용하면 type 이 object 인 data 를 one-hot encoding 시켜 준다.
+
+- data binning 을 통해 퍼져 있는 data 의 구간을 나눠 분류할 수 있다.
+
+
+== (3) :: Feature Scaling ==
+- 두 변수 중 하나의 값의 크기가 너무 클 때 등등 ...
+>> feature 간의 최대-최소값의 차이를 맞춘다.
+
+>> Min-Max Normalization
+- 기존 변수의 범위를 새로운 최대-최소로 변경
+- 일반적으로 0 과 1 사이의 값으로 변경함
+
+>> Standardization (Z-Score Normalization :: 정규분포화)
+- 기존 변수의 범위를 정규 분포로 변환
+- 실제 Min-Max 의 값을 모를 때 활용 가능
+
+// 보통 sklearn 을 통해 많이 변환한다.
+-> 일반적으로 Scaling 을 하면 처리 속도가 빨라진다 !!
+
+"""
+
 
 def main():
     print("\n#############################[ 1. numpy_lec.py ]#############################")
