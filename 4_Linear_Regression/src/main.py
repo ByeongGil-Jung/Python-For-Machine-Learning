@@ -100,7 +100,81 @@
 
 """
 
-[ sklearn_lec.ipynb ]
+[ sklearn_GD_lec.ipynb ]
+
+>> sklearn_GD_lec.ipynb 파일 참조
+
+- sklearn 에는 다양한 Linear Regression 알고리즘이 내장되어 있다.
+
+"""
+
+"""
+
+[ sklearn_SGD_lec.ipynb ]
+
+
+== (1) :: Kinds of GD ==
+
+** Stochastic Gradient Descent 마지막 부분에 4 가지 GD 방법에 대한 비교 및 차이가 잘 나와있다 !!
+
+< Full-batch Gradient Descent >
+
+- 한 점이 아닌, 한번에 여러 개의 점의 gradient 를 업데이트 하는 방법이다.
+
+ (장점)
+ - GD 가 1 개의 데이터를 미분하는 것과 달리, 동시에 여러 데이터를 미분한다.
+ - 앞으로 일반적으로 GD = (full) batch GD 라고 가정한다.
+ - 모든 데이터 셋으로 학습한다.
+ - 업데이트 감소 -> 계산상 속도의 효율성을 높임
+ - 안정적인 cost 함수 수렴
+ 
+ (단점)
+ - 지역 최적화 가능 (전체 data 를 같이 넣기 때문)
+ - 메모리 문제 (-> 수십 억개의 데이터를 한번에 업데이트 하기엔 무리가 있음)
+ - 대규모 data set (-> model / parameter 의 업데이트가 느려짐)
+ 
+ >> 즉, 메모리 문제 등으로 딥러닝, 초대규모 data set 에선 사용하기 힘들다.
+ >> 이를 보완할 방법으로 SGD 사용. (특히 mini-batch SGD 는 실제로 제일 많이 사용한다.)
+ 
+
+< Stochastic Gradient Descent (SGD) >
+
+- GD 처럼 차례대로 한 점씩 접근하는 것이 아닌, 한 번에 랜덤한 여러 점에서 접근한다.
+
+ (장점)
+ - 일부 문제에 대해 GD 보다 더 빨리 수렴
+ - 지역 최적화 회피
+ 
+ (단점)
+ - 빈번한 업데이트로 인해 전체적으로 시간이 좀 오래 걸림
+ - 대용량 데이터 작업 시 시간이 오래 걸림
+ - 더 이상 cost 가 줄어들지 않는 시점의 발견이 어려움
+ 
+ >> 이를 보완하기 위해 'Mini-batch (Stochastic) Gradient Descent' 개념이 나옴
+
+
+< Mini-batch Stochastic Gradient Descent (mini-batch SGD) >
+
+- SGD 의 단점을 보완하기 위해 나온 방식
+- 처리할 데이터의 영역을 분할하여 연산을 수행한다.
+
+- 한 번에 일정량의 데이터를 랜덤하게 뽑아서 학습
+- SGD 와 Batch GD 를 혼합한 방법
+- 가장 일반적으로 많이 쓰이는 방법
+  (딥러닝의 optimization 된 알고리즘의 기본이다.)
+
+
+== (2) :: Epoch & Batch-size ==
+
+- Epoch ?
+  :: 전체 데이터가 Training data 에 들어가는 횟수 (들어갈 때 카운팅)
+- Full-batch 를 n 번 실행하면 n epoch
+- Batch-size ?
+  :: 한 번에 학습되는(update 되는) 데이터의 갯수
+  
+ex) 총 5,120 개의 Training data 에 512 batch-size 면 몇 번 학습을 해야 1 epoch 가 되는가 ?
+ans) 10 번
+
 
 """
 
