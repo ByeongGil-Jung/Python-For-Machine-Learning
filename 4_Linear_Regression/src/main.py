@@ -178,6 +178,16 @@ ans) 10 번
 
 """
 
+"""
+
+[ sklearn_exercise.ipynb ]
+
+>> sklearn_exercise.ipynb 파일 참조
+
+- sklearn 라이브러리를 통해 다양한 Linear Regression 모델을 사용할 수 있다.
+
+"""
+
 
 def main():
     return None
